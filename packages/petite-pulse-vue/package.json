@@ -1,0 +1,16 @@
+{
+  "name": "petite-pulse-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "@vueuse/core": "^9.13.0",
+    "signia": "^0.0.9",
+    "vue": "^3.2.47"
+  }
+}
