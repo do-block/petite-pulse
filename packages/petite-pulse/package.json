@@ -1,0 +1,14 @@
+{
+  "name": "petite-pulse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "immer": "^9.0.19"
+  }
+}

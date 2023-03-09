@@ -4,7 +4,10 @@
   "description": "Implement Vue.js state management based on the signia library and add additional functionalities that better meet the practical needs of the workplace.",
   "main": "index.js",
   "scripts": {
-    "run:example": "sh ./scripts/run/example.sh"
+    "run:example": "sh ./scripts/run/example.sh",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +20,8 @@
     "eslint-plugin-vue": "^9.9.0",
     "prettier": "^2.8.4",
     "typescipt": "^1.0.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vitepress": "1.0.0-alpha.50"
   },
   "dependencies": {
     "signia": "^0.0.9"
