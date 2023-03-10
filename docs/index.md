@@ -7,7 +7,7 @@ titleTemplate: Petite-pulse - %s - A simple and clear API that can be easily int
 hero:
   name: "Petite-pulse"
   text: "脉动"
-  tagline: We will use the Signia library to implement state management in Vue.js and extend its functionality to better suit practical workplace needs. This will involve developing additional features beyond the basic capabilities of Signia.
+  tagline: To better meet the needs of the actual workplace, we will use the Signia library to implement Vue.js state management and develop additional features.
   actions:
     - theme: brand
       text:  Start
