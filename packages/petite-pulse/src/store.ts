@@ -14,10 +14,7 @@ const createAtom = function () {
 
 class Document<T extends Record<string, unknown>, S extends BaseSelectorKeys> {
   private readonly _document: ShallowRef<T>;
-  private readonly _selector: Record<S, () => ShallowRef<T>> = {} as Record<
-    S,
-    () => ShallowRef<T>
-  >;
+  private readonly _selector: Record<S, () => T> = {} as Record<S, () => T>;
 
   constructor({ state, selector }: { state: T; selector?: SelectorRecord<S> }) {
     this._document = shallowRef(state);
@@ -58,6 +55,15 @@ class Document<T extends Record<string, unknown>, S extends BaseSelectorKeys> {
   connect() {
     return [this.get(), this.update.bind(this)];
   }
+
+  useSelector(selector: S) {
+    const selectorFn = this.getSelector()?.[selector];
+    if (!selectorFn) {
+      throw new Error("selector not found");
+    }
+
+    return selectorFn();
+  }
 }
 
 export function createDocument<
@@ -70,18 +76,6 @@ export function createDocument<
 
   const store = new Document<T, S>(options);
   return store;
-}
-
-export function useSelector<
-  T extends Record<string, unknown>,
-  S extends BaseSelectorKeys
->(store: Document<T, S>, selector: S) {
-  const selectorFn = store.getSelector()?.[selector];
-  if (!selectorFn) {
-    throw new Error("selector not found");
-  }
-
-  return selectorFn();
 }
 
 export default createAtom;

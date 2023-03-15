@@ -1,9 +1,4 @@
-import {
-  createDocument,
-  Selector,
-  SelectorRecord,
-  useSelector,
-} from "petite-pulse";
+import { createDocument, Selector, SelectorRecord } from "petite-pulse";
 import { describe, expect, it } from "vitest";
 
 describe("changeData", () => {
@@ -26,15 +21,21 @@ describe("changeData", () => {
   });
 });
 
-describe("middleware", () => {
+describe("selector", () => {
   it("Create store", async () => {
     const setName: Selector = (state, next) => {
       state.name = "Jane";
       next();
     };
 
+    const setTwoName: Selector = (state, next) => {
+      state.name = "One";
+      next();
+    };
+
     const selector = {
       setName,
+      setTwoName,
     };
     const storeState = {
       name: "John",
@@ -42,6 +43,7 @@ describe("middleware", () => {
 
     const selectorValues: SelectorRecord<keyof typeof selector> = {
       setName,
+      setTwoName,
     };
 
     const store = createDocument({
@@ -53,13 +55,15 @@ describe("middleware", () => {
 
     expect(state).toEqual({ name: "John" });
 
-    const result = useSelector<typeof storeState, keyof typeof selector>(
-      store,
-      "setName"
-    );
+    const result = store.useSelector("setName");
 
-    console.log("result", result);
+    expect(result).toEqual({
+      name: "Jane",
+    });
 
-    expect(result).toEqual({ name: "Jane" });
+    const twoName = store.useSelector("setTwoName");
+    expect(twoName).toEqual({
+      name: "One",
+    });
   });
 });
