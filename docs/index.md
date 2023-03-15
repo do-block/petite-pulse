@@ -2,12 +2,12 @@
 layout: home
 
 title: Petite-pulse
-titleTemplate: Petite-pulse - %s - A simple and clear API that can be easily integrated into projects.
+titleTemplate: Petite-pulse - A simple and clear API that can be easily integrated into projects.
 
 hero:
   name: "Petite-pulse"
   text: "脉动"
-  tagline: To better meet the needs of the actual workplace, we will use the Signia library to implement Vue.js state management and develop additional features.
+  tagline: To better meet the needs of the workplace, we will implement Vue.js state management and develop other practical features based on this library.
   actions:
     - theme: brand
       text:  Start

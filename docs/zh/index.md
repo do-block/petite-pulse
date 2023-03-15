@@ -2,12 +2,12 @@
 layout: home
 
 title: Petite-pulse
-titleTemplate: Petite-pulse - %s - A simple and clear API that can be easily integrated into projects.
+titleTemplate: Petite-pulse - A simple and clear API that can be easily integrated into projects.
 
 hero:
   name: "Petite-pulse"
   text: "脉动"
-  tagline: 为了更好地满足实际工作场所的需求，我们将使用 Signia 库实现 Vue.js 的状态管理，并开发一些额外的功能。
+  tagline: 为了更好地满足实际工作场所的需求，我们将实现Vue.js状态管理并基于这个库开发其他实用功能。
   actions:
     - theme: brand
       text:  开始
