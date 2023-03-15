@@ -1,28 +1,31 @@
-# Petite pulse
+# Petite Pulse
 
-开发初衷：为了更好的满足实际工作场景的需求，我们将使用Signia库来实现Vue.js状态管理，并开发额外的功能。
+Original Purpose: To better meet the needs of real-world work scenarios, we will use the Signia library to implement Vue.js state management and develop additional functionality.
 
-下面会介绍特点和想要解决的问题和功能，如果在阅读结束后，对您来说不是刚需或者您对尝鲜不是那么有兴趣，那么建议你使用
-[pinia](https://github.com/vuejs/pinia).
+1. [Introduction](#)
+2. [Features](#)
+3. [Installation](#)
+4. [Usage](#)
+5. [API](#)
+6. [Examples](#)
+7. [Development](#)
+8. [Contributing](#)
+9. [License](#)
+10. [References](#)
 
-1. [概念](#概念)
-1. [简介](#简介)
-2. [特性](#特性)
-3. [安装](#安装)
-4. [使用](#使用)
-5. [API](#API)
-6. [示例](#示例)
-7. [开发](#开发)
-8. [贡献](#贡献)
-9. [许可](#许可)
-10. [参考](#参考)
+## Feature Design
 
-## 概念
-
-`Document` 的概念, 单个Document 可以了理解成 一个主体，在这个主体中包含了很多的记录，而我们可以通过这个
-Document 来进行增删改查，这个主体可以是一个用户，一个订单，一个商品等等。
-
-那么对于前端来说，日常开发中，我们会有很多的跨组件或者跨页面的数据需要共享，这个时候我们就需要一个全局的
-Document 来进行管理，而这个全局的 Document 就是我们的 `Store`。
-
-## 简介
+  1. State Management Container Design
+        The design of the state management container allows different components in the application to share state and maintain consistency of the state throughout the application's lifecycle, which needs to be considered in the design of the state management container.
+  2. Defining Actions
+        Available operations should be clearly defined, such as setting data, updating state, or sending API requests, etc. This helps maintain consistency of the application code and makes it easier to understand and maintain.
+  3. Unified API
+        Defining a unified API interface for state management is a good way to implement it, which can be achieved by using APIs that handle and update states based on specific events. This makes managing the state of multiple data sources easier.
+  4. Middleware Design
+        Middleware allows you to execute custom code at different points in the application, such as before or after sending API requests. This helps maintain consistency of the application code and makes it easier to understand and maintain.
+  5. DevTools
+        DevTools is a tool for debugging applications, which can be used to view changes in state throughout the application's lifecycle. This helps debug the application and makes it easier to understand and maintain.
+  6. Code Splitting
+        Code splitting is a technique for dividing an application's code into multiple chunks that can be loaded on demand. This helps improve application performance and makes it easier to understand and maintain.
+  7. Server-Side Rendering
+        Server-side rendering is a technique for pre-rendering an application on the server and then sending it to the client. This helps improve application performance and makes it easier to understand and maintain.
