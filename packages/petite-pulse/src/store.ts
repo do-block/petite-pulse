@@ -1,16 +1,5 @@
-import { Plugin, ShallowRef, shallowRef, triggerRef } from "vue";
-import { BaseSelectorKeys, SelectorRecord } from "./types";
-
-const createAtom = function () {
-  const plugin: Plugin = {
-    install(app) {
-      app.config.globalProperties.$petitePulse = function () {
-        console.log("petite pulse");
-      };
-    },
-  };
-  return plugin;
-};
+import { ShallowRef, shallowRef, triggerRef } from 'vue';
+import { BaseSelectorKeys, SelectorRecord } from './types';
 
 class Document<T extends Record<string, unknown>, S extends BaseSelectorKeys> {
   private readonly _document: ShallowRef<T>;
@@ -46,7 +35,7 @@ class Document<T extends Record<string, unknown>, S extends BaseSelectorKeys> {
 
   private update(v: unknown) {
     this._document.value =
-      typeof v === "function" ? v(this._document.value) : v;
+      typeof v === 'function' ? v(this._document.value) : v;
     triggerRef(this._document);
 
     return this._document.value;
@@ -59,7 +48,7 @@ class Document<T extends Record<string, unknown>, S extends BaseSelectorKeys> {
   useSelector(selector: S) {
     const selectorFn = this.getSelector()?.[selector];
     if (!selectorFn) {
-      throw new Error("selector not found");
+      throw new Error('selector not found');
     }
 
     return selectorFn();
@@ -70,12 +59,10 @@ export function createDocument<
   T extends Record<string, unknown>,
   S extends BaseSelectorKeys
 >(options: { state: T; selector?: SelectorRecord<S> }) {
-  if (typeof options.state !== "object") {
-    throw new Error("state must be an object");
+  if (typeof options.state !== 'object') {
+    throw new Error('state must be an object');
   }
 
   const store = new Document<T, S>(options);
   return store;
 }
-
-export default createAtom;
