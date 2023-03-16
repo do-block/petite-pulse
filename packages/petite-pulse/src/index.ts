@@ -8,5 +8,7 @@ export const createPulse = function () {
   return plugin();
 };
 
+export * from './atom';
 export * from './store';
 export * from './types';
+

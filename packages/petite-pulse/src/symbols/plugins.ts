@@ -1,1 +1,1 @@
-export const STORE_SYMBOL = Symbol('$petitePulseStore');
+export const STORE_SYMBOL = '$petitePulseStore';

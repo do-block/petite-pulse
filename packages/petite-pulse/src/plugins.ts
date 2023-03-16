@@ -5,7 +5,7 @@ import { BaseStore } from './types';
 export const plugin: () => Plugin = () => {
   const defaultStore: BaseStore = {
     keys: new Set(),
-    treeStore: {},
+    treeStore: new Map(),
   };
 
   return {
