@@ -1,5 +1,10 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createPulse } from "petite-pulse";
+import { createApp } from "vue";
 
-createApp(App).mount('#app')
+import App from "./App.vue";
+import "./style.css";
+const petitePulse = createPulse();
+
+createApp(App).use(petitePulse).mount("#app");
+
+// const data = createDocument
