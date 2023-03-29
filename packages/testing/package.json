@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vitest": "^0.29.2"
+    "vitest": "^0.29.2",
+    "vitest-localstorage-mock": "^0.0.1"
   },
   "dependencies": {
     "petite-pulse": "workspace:*"

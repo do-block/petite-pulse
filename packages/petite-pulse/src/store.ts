@@ -1,10 +1,12 @@
 import { computed, shallowRef, ShallowRef, triggerRef, watchEffect } from 'vue';
-import { BASES, BaseSelectorKeys, BASET } from './types';
+import { BASES, BaseSelectorKeys, BASET, MiddlewareFunction } from './types';
 
 export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
   private readonly _document: ShallowRef<T>;
-  private readonly _selector: Map<S, () => any> = new Map();
+  private readonly _selector: Map<S, () => unknown> = new Map();
   private readonly _plugins: PluginFunction[] = [];
+  private _middlewares: MiddlewareFunction[] = [];
+  private _subscriptions: Set<() => void> = new Set();
 
   constructor({
     state,
@@ -15,6 +17,37 @@ export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
   }) {
     this._document = shallowRef(state);
     this.reactSelector(selector);
+  }
+
+  subscribe(callback: () => void) {
+    this._subscriptions.add(callback);
+  }
+
+  unsubscribe(callback: () => void) {
+    this._subscriptions.delete(callback);
+  }
+
+  applyMiddlewares(middleware: MiddlewareFunction) {
+    this._middlewares.push(middleware);
+  }
+
+  batchUpdate(updates: Array<(state: T) => T>) {
+    const newState = updates.reduce(
+      (currentState, updateFn) => updateFn(currentState),
+      this._document.value
+    );
+
+    this.update(newState);
+  }
+
+  public initialize(initialState: T) {
+    if (Object.keys(this._document.value).length === 0) {
+      this._document.value = initialState;
+    }
+  }
+
+  public mergeState(newState: Partial<T>) {
+    this._document.value = { ...this._document.value, ...newState };
   }
 
   private reactSelector(selector?: Record<string, any>) {
@@ -34,8 +67,13 @@ export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
   }
 
   private update(v: T | ((state: T) => T)) {
-    this._document.value =
-      typeof v === 'function' ? v(this._document.value) : v;
+    const newState = typeof v === 'function' ? v(this._document.value) : v;
+
+    this._middlewares.forEach((middleware) =>
+      middleware(this._document.value, 'update', newState)
+    );
+
+    this._document.value = newState;
 
     if (!this._document.value) {
       throw new Error('state must be an object , please return state');
@@ -43,7 +81,15 @@ export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
 
     triggerRef(this._document);
 
+    this._subscriptions.forEach((callback) => callback());
+
     return this._document.value;
+  }
+
+  onUpdate(callback: (state: T) => void) {
+    this.subscribe(() => {
+      callback(this.get().value);
+    });
   }
 
   getSelector() {
@@ -87,7 +133,7 @@ export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
 export function createDocument<
   T extends Record<string, unknown>,
   S extends BaseSelectorKeys
->(options: { state: T; selector?: Record<string, any> }) {
+>(options: { state: T; selector?: Record<string, unknown> }) {
   if (typeof options.state !== 'object') {
     throw new Error('state must be an object');
   }

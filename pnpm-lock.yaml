@@ -81,10 +81,12 @@ importers:
     specifiers:
       petite-pulse: workspace:*
       vitest: ^0.29.2
+      vitest-localstorage-mock: ^0.0.1
     dependencies:
       petite-pulse: link:../petite-pulse
     devDependencies:
       vitest: 0.29.2
+      vitest-localstorage-mock: 0.0.1_vitest@0.29.2
 
 packages:
 
@@ -682,7 +684,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.4
+      vite: 4.1.4_@types+node@18.14.6
       vue: 3.2.47
     dev: true
 
@@ -2173,6 +2175,14 @@ packages:
       - stylus
       - sugarss
       - terser
+    dev: true
+
+  /vitest-localstorage-mock/0.0.1_vitest@0.29.2:
+    resolution: {integrity: sha512-jt8/URLM+aJWObVPWxDZwt/ZSl/JOKafYuITozDVoFHlgl99jjZ7Wdvsu8ryalFChlgsg1lOBicTQsHXJCpXuw==}
+    peerDependencies:
+      vitest: '*'
+    dependencies:
+      vitest: 0.29.2
     dev: true
 
   /vitest/0.29.2:

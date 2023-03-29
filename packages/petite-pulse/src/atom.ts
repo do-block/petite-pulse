@@ -1,6 +1,6 @@
 import { inject } from 'vue';
 import { createDocument } from './store';
-import { STORE_SYMBOL } from './symbols/plugins';
+import { STORE_SYMBOL } from './symbols';
 import { AtomOptions, BASES, BaseStore, BASET, Selector } from './types';
 
 export const createAtom = function <T extends BASET, S extends Selector<T>>({

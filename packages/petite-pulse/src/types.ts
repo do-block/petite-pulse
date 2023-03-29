@@ -13,6 +13,12 @@ export interface Selector<T> {
   [key: string]: (state: T) => any;
 }
 
+export type MiddlewareFunction = (
+  state: Record<string, unknown>,
+  action: string,
+  payload: unknown
+) => void;
+
 export type AtomOptions<T, S extends Selector<T>> = {
   key: string;
   state: T;

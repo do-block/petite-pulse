@@ -18,6 +18,7 @@ const changeName = () => {
 const store = useStore();
 
 const [data, setData] = connect(store);
+
 const plusSelector = PSelector(store, "plus");
 </script>
 
@@ -33,7 +34,7 @@ const plusSelector = PSelector(store, "plus");
     </p>
     <p>
       test text：
-      {{ data }} 
+      {{ data }}
       selector ：
       {{ plusSelector }}
     </p>
