@@ -13,7 +13,7 @@ const store = createDocument({
 const [state, setState] = connect(store);
 
 const startNumber = performance.now(); 
-// mock 1000 number state updates
+// Mock 1000 number state updates
 for (let i = 0; i < 100000; i++) {
   setState((state) => {
     return {

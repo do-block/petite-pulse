@@ -24,3 +24,8 @@ export type AtomOptions<T, S extends Selector<T>> = {
   state: T;
   selector?: S;
 };
+
+export type BatchUpdate<T> = (setState: (state: (state: T) => T) => void) => void
+export type PeddingUpdate<T> =  Array<(state: T) => T>
+
+export type UpdateFn<T> = (state: T) => T

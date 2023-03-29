@@ -1,5 +1,6 @@
 import { computed, shallowRef, ShallowRef, triggerRef, watchEffect } from 'vue';
-import { BASES, BaseSelectorKeys, BASET, MiddlewareFunction } from './types';
+import { UpdateFn } from './../../../../petite-pulse/src/types';
+import { BASES, BaseSelectorKeys, BASET, BatchUpdate, MiddlewareFunction, PeddingUpdate } from './types';
 
 export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
   private readonly _document: ShallowRef<T>;
@@ -31,14 +32,23 @@ export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
     this._middlewares.push(middleware);
   }
 
-  batchUpdate(updates: Array<(state: T) => T>) {
-    const newState = updates.reduce(
-      (currentState, updateFn) => updateFn(currentState),
-      this._document.value
-    );
+  public batchUpdate(callback: BatchUpdate<T>) {
+    let pendingUpdates: PeddingUpdate<T> = [];
+
+    const setState = (updateFn: UpdateFn<T>) => {
+      pendingUpdates.push(updateFn);
+    };
+
+    callback(setState);
+
+    let newState = this._document.value;
+    pendingUpdates.forEach((updateFn) => {
+      newState = updateFn(newState);
+    });
 
     this.update(newState);
   }
+
 
   public initialize(initialState: T) {
     if (Object.keys(this._document.value).length === 0) {
