@@ -1,0 +1,17 @@
+{
+  "name": "performance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "perf": "ts-node ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+},
+  "dependencies": {
+    "petite-pulse": "workspace:*"
+  }
+}

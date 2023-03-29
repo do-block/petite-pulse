@@ -9,6 +9,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "test": "cd ./packages/testing && npx vitest",
+    "perf": "cd ./packages/performance &&  pnpm run perf",
     "case:fix": "npx case-police --fix"
   },
   "keywords": [],

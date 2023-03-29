@@ -59,6 +59,12 @@ importers:
       vite: 4.1.4
       vue-tsc: 1.2.0_typescript@4.9.5
 
+  packages/performance:
+    specifiers:
+      petite-pulse: workspace:*
+    dependencies:
+      petite-pulse: link:../petite-pulse
+
   packages/petite-pulse:
     specifiers:
       immer: ^9.0.19
@@ -684,7 +690,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.4_@types+node@18.14.6
+      vite: 4.1.4
       vue: 3.2.47
     dev: true
 

@@ -10,7 +10,7 @@ export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
 
   constructor({
     state,
-    selector,
+    selector
   }: {
     state: T;
     selector?: Record<string, any>;
@@ -96,14 +96,14 @@ export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
     return this._selector;
   }
 
-  connect() {
+  connect(): {
+    get: () => ShallowRef<T>;
+    set: (v: T | ((state: T) => T)) => T;
+  } {
     return {
       get: this.get.bind(this),
-      set: this.update.bind(this),
-    } as {
-      get: () => ShallowRef<T>;
-      set: (v: T | ((state: T) => T)) => T;
-    };
+      set: this.update.bind(this)
+    }
   }
 
   selector(selector: S) {
