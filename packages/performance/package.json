@@ -12,6 +12,6 @@
   "devDependencies": {
 },
   "dependencies": {
-    "petite-pulse": "workspace:*"
+    "petite-pulse": "workspace:1.0.0"
   }
 }

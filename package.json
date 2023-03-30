@@ -10,7 +10,8 @@
     "docs:preview": "vitepress preview docs",
     "test": "cd ./packages/testing && npx vitest",
     "perf": "cd ./packages/performance &&  pnpm run perf",
-    "case:fix": "npx case-police --fix"
+    "case:fix": "npx case-police --fix",
+    "deploy:docs": "sh ./scripts/run/build_docs.sh"
   },
   "keywords": [],
   "author": "",
