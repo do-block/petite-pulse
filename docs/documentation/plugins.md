@@ -100,7 +100,7 @@ console.log(newState.value.name); // Output: 'Jane'
 
 The `localStoragePlugin` accepts an options object with the following properties:
 
-    key (required): The key to use when storing and retrieving state from localStorage.
+   1. key (required): The key to use when storing and retrieving state from localStorage.
 
 Example:
 
