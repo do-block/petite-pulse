@@ -1,15 +1,7 @@
-import {
-    connect,
-    createDocument, PluginFunction
-} from 'petite-pulse';
+import { connect, createDocument, PluginFunction } from 'petite-pulse';
 import { describe, expect, it } from 'vitest';
 
-export function localStoragePlugin({
-  key,
-}: {
-  key: string;
-  override?: boolean;
-}): PluginFunction {
+export function localStoragePlugin({ key }: { key: string; override?: boolean }): PluginFunction {
   return (doc) => {
     // Load state from localStorage
     const storedState = localStorage.getItem(key);

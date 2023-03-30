@@ -1,6 +1,5 @@
 import { computed, shallowRef, ShallowRef, triggerRef, watchEffect } from 'vue';
-import { UpdateFn } from './../../../../petite-pulse/src/types';
-import { BASES, BaseSelectorKeys, BASET, BatchUpdate, MiddlewareFunction, PeddingUpdate } from './types';
+import { BASES, BaseSelectorKeys, BASET, BatchUpdate, MiddlewareFunction, PeddingUpdate, UpdateFn } from './types';
 
 export class PDocument<T extends BASET, S extends BaseSelectorKeys> {
   private readonly _document: ShallowRef<T>;
