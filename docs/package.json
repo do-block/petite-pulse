@@ -10,9 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "dependencies": {
-    "petite-pulse-vue": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "vitepress": "1.0.0-alpha.50"
   }
